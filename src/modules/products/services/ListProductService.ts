@@ -8,7 +8,7 @@ interface IRequest {
   quantity: number;
 }
 
-class CreateProductService {
+class ListProductServices {
   public async execute({ name, price, quantity}: IRequest) {
     const productsRepository = getCustomRepository(ProductRepository);
     const productExists = await productsRepository.findByName(name);
@@ -29,4 +29,4 @@ class CreateProductService {
   }
 }
 
-export default CreateProductService;
+export default CreateProductServices;
