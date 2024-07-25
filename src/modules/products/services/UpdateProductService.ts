@@ -23,13 +23,15 @@ class UpdateProductService {
 
     const productExists = await productsRepository.findByName(name);
 
-    if (productExists) {
+    if (productExists && name !== product.name) {
       throw new AppError('There is already one product width this name');
     }
 
     product.name = name;
     product.price = price;
     product.quantity = quantity;
+
+    await productsRepository.save(product)
 
     return product;
   }
