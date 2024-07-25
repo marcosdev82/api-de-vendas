@@ -5,10 +5,13 @@ import AppError from "@shared/errors/AppError";
 
 interface IRequest {
   id: string;
+  name: string;
+  price: number;
+  quantity: number;
 }
 
-class ListProductService {
-  public async execute({ id }: IRequest): Promise<Product> {
+class UpdateProductService {
+  public async execute({ id, name, price, quantity }: IRequest): Promise<Product> {
     const productsRepository = getCustomRepository(ProductRepository);
 
     // Usar await para garantir que a chamada ao banco de dados seja concluída
@@ -18,8 +21,18 @@ class ListProductService {
       throw new AppError('Product not found.');
     }
 
+    const productExists = await productsRepository.findByName(name);
+
+    if (productExists) {
+      throw new AppError('There is already one product width this name');
+    }
+
+    product.name = name;
+    product.price = price;
+    product.quantity = quantity;
+
     return product;
   }
 }
 
-export default ListProductService;
+export default UpdateProductService;
