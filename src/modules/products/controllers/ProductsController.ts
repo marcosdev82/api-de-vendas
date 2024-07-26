@@ -10,5 +10,11 @@ export default class ProductsController {
     return response.json(product)
   }
 
+  public async show(request: Request, response: Response) {
+    const { id } = request.params;
+
+
+  }
+
 
 }
