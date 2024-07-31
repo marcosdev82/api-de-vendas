@@ -17,7 +17,7 @@ class CreateProductService {
       throw new AppError('There is already one product width this name');
     }
 
-    const product = productsRepository.create({
+    const product =  productsRepository.create({
       name,
       price,
       quantity,

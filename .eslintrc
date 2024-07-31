@@ -13,7 +13,8 @@
     "plugin:prettier/recommended"
   ],
   "rules": {
-    "no-console": "warn",
+    "no-console": [true, "warning"],
+
     "prettier/prettier": "error"
   }
 }
