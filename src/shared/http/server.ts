@@ -32,6 +32,6 @@ app.use(
 );
 // a porta 3333 não funcionou
 // http://localhost:3000/
-app.listen(3333, () => {
-  console.log('Server started on port 3333! 🚀' );
+app.listen(3000, () => {
+  console.log('Server started on port 3000! 🚀' );
 });
