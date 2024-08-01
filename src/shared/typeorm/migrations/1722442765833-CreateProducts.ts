@@ -3,7 +3,7 @@ import {MigrationInterface, QueryRunner, Table} from "typeorm";
 export class CreateProducts1722442765833 implements MigrationInterface {
 
     public async up(queryRunner: QueryRunner): Promise<void> {
-    console.log(queryRunner)
+
     await queryRunner.createTable(
       new Table({
         name: 'products',
@@ -39,7 +39,7 @@ export class CreateProducts1722442765833 implements MigrationInterface {
             type: 'timestamp',
             default: 'now()',
           },
-        ],
+        ]
       }),
     );
   }
