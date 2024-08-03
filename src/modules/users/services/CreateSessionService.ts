@@ -5,7 +5,6 @@ import UsersRepository from "../typeorm/repositories/UsersRepository";
 import { compare, hash } from "bcryptjs";
 
 interface IRequest {
-  name: string;
   email: string;
   password: string;
 }
