@@ -1,5 +1,5 @@
 import AppError from "@shared/errors/AppError";
-import { verify } from "crypto";
+import { verify } from "jsonwebtoken";
 import { NextFunction, Request, Response } from "express";
 import authConfig from '@config/auth';
 
