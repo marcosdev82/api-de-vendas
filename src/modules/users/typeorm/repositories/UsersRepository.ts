@@ -14,6 +14,7 @@ class UsersRepository extends Repository<User> {
   }
 
   public async findById(id: string): Promise<User | undefined> {
+
     const user = await this.findOne({
       where: {
         id,
