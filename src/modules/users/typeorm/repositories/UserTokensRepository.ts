@@ -19,8 +19,10 @@ class UserTokensRepository extends Repository<UserToken> {
       user_id,
     });
 
+    await this.save(userToken);
+
     return userToken;
   }
 }
 
-export default UsersRepository;
+export default UserTokensRepository;
