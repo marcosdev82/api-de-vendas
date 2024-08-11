@@ -10,15 +10,6 @@ import { Column, CreateDateColumn, Entity, Generated, PrimaryGeneratedColumn, Up
   @Generated('uuid')
   token: string;
 
-  @Column()
-  email: string;
-
-  @Column()
-  password: string
-
-  @Column()
-  avatar: string;
-
   @CreateDateColumn()
   created_at: Date;
 
