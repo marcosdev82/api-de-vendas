@@ -1,6 +1,6 @@
 import {MigrationInterface, QueryRunner, Table} from "typeorm";
 
-export class CreateUsers1722528960953 implements MigrationInterface {
+export class CreateUserTokens1723408907830 implements MigrationInterface {
 
     public async up(queryRunner: QueryRunner): Promise<void> {
       await queryRunner.createTable(
@@ -34,6 +34,16 @@ export class CreateUsers1722528960953 implements MigrationInterface {
               type: 'timestamp',
               default: 'now()',
             },
+          ],
+          foreignKeys: [
+            {
+              name: 'TokenUser',
+              referencedTableName: 'users',
+              referencedColumnNames: ['user_id'],
+              columnNames: ['user_id'],
+              onDelete: 'CASCADE',
+              onUpdate: 'CASCADE',
+            }
           ]
         })
       )
