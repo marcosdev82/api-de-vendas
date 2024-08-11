@@ -10,6 +10,9 @@ import { Column, CreateDateColumn, Entity, Generated, PrimaryGeneratedColumn, Up
   @Generated('uuid')
   token: string;
 
+  @Column()
+  user_id: string;
+
   @CreateDateColumn()
   created_at: Date;
 
