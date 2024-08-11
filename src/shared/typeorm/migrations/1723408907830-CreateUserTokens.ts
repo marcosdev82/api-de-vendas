@@ -39,14 +39,14 @@ export class CreateUserTokens1723408907830 implements MigrationInterface {
             {
               name: 'TokenUser',
               referencedTableName: 'users',
-              referencedColumnNames: ['user_id'],
+              referencedColumnNames: ['id'],
               columnNames: ['user_id'],
               onDelete: 'CASCADE',
               onUpdate: 'CASCADE',
-            }
-          ]
-        })
-      )
+            },
+          ],
+        }),
+      );
     }
 
     public async down(queryRunner: QueryRunner): Promise<void> {
