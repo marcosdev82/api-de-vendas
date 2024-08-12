@@ -4,7 +4,7 @@ import {isAfter, addHours} from "date-fns";
 import { hash } from 'bcryptjs';
 import UsersRepository from "../typeorm/repositories/UsersRepository";
 import UserTokensRepository from "../typeorm/repositories/UserTokensRepository";
-import { compare } from "bcryptjs";
+
 
 interface IRequest {
   token: string;
@@ -12,7 +12,7 @@ interface IRequest {
 }
 
 class ResetPasswordService {
-  public async execute({ token, password }: IRequest): Promise<Void> {
+  public async execute({ token, password }: IRequest): Promise<void> {
     const usersRepository = getCustomRepository(UsersRepository);
     const userTokensRepository = getCustomRepository(UserTokensRepository);
 
