@@ -18,5 +18,13 @@ export default class EtherealMail{
         pass: account.pass,
       }
     });
+
+    const message = await transporter.sendMail({
+      from: 'equipe@apivendas.com.br',
+      to,
+      subject: 'Reucuperação de senha',
+      text: body,
+    });
+
   }
 }
