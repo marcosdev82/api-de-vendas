@@ -26,5 +26,8 @@ export default class EtherealMail{
       text: body,
     });
 
+    console.log('Message sent %s', message.messageId)
+    console.log('Preview URL %s', nodemailer.getTestMessageUrl(message));
+
   }
 }
