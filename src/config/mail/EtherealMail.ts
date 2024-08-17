@@ -2,8 +2,8 @@ import nodemailer from 'nodemailer';
 import HandlebarsMailTemplate from './HandlebarsMailTemplate';
 
 interface IEmailContact {
-  to: IEmailContact;
-  from?: IEmailContact;
+  name: string;
+  email: string;
 }
 
 interface ITemplateVariable {
