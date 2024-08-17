@@ -1,6 +1,5 @@
 import Handlebars from "handlebars";
 
-
 interface ITemplateVariable {
   [key: string]: string | number;
 }
