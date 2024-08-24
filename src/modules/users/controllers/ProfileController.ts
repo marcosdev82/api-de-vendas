@@ -12,7 +12,7 @@ export default class ProfileController {
     return response.json(user);
   }
 
-  public async create(request: Request, response: Response): Promise<Response> {
+  public async show(request: Request, response: Response): Promise<Response> {
     const user_id = request.user.id;
     const { name, email, password, old_password } = request.body;
 
