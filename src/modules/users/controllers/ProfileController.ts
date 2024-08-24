@@ -3,7 +3,7 @@ import ShowProfileService from "../services/ShowProfileService";
 import UpdateProfileService from "../services/UpdateProfileService";
 
 export default class ProfileController {
-  public async index(request: Request, response: Response): Promise<Response> {
+  public async show(request: Request, response: Response): Promise<Response> {
     const showProfile = new ShowProfileService();
     const user_id = request.user.id;
 
@@ -12,7 +12,7 @@ export default class ProfileController {
     return response.json(user);
   }
 
-  public async show(request: Request, response: Response): Promise<Response> {
+  public async update(request: Request, response: Response): Promise<Response> {
     const user_id = request.user.id;
     const { name, email, password, old_password } = request.body;
 
