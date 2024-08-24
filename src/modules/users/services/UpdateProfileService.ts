@@ -14,7 +14,11 @@ interface IRequest {
 
 class UpdateProfileService {
   public async execute({
-    user_id, name, email, password, old_password,
+    user_id,
+    name,
+    email,
+    password,
+    old_password,
   }: IRequest): Promise<User> {
     const usersRepository = getCustomRepository(UsersRepository);
 
@@ -26,8 +30,12 @@ class UpdateProfileService {
 
     const userUpdateEmail = await usersRepository.findByEmail(email);
 
-    if (userUpdateEmail && userUpdateEmail.id === user_id) {
-      throw new AppError('There is already one user width this email.');
+    if (userUpdateEmail && userUpdateEmail.id !== user_id) {
+      throw new AppError('There is already one user with this email.');
+    }
+
+    if (password && !old_password) {
+      throw new AppError('Old password is required.');
     }
 
     if (password && old_password) {
