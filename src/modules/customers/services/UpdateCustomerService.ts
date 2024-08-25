@@ -24,13 +24,11 @@ class UpdateCustomerService {
       throw new AppError('Customer not found.');
     }
 
-    const customerExists = await customersRepository.findByEmail(email);
+    const customerExists = await custumersRepository.findByEmail(email);
 
     if (customerExists && email !== customer.email) {
       throw new AppError('There is already one customer with this email.');
     }
-
-
 
     customer.name = name;
     customer.email = email;
