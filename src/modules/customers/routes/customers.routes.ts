@@ -25,9 +25,6 @@ customersRouter.post(
       name: Joi.string().required(),
       email: Joi.string().email().required()
     },
-    [Segments.PARAMS]: {
-      id: Joi.string().uuid().required(),
-    }
   }),
   customersController.create
 );
