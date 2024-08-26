@@ -12,8 +12,8 @@ import OrdersProducts from "./OrderProducts";
   @JoinColumn({'name': 'customer_id'})
   customer: Customer
 
-  @OneToMany(() => OrdersProducts, order_products => order_products. )
-  order_products: OrdersProducts[]
+  @OneToMany(() => OrdersProducts, order_products => order_products.order )
+  order_products: OrdersProducts[];
 
   @CreateDateColumn()
   created_at: Date;
