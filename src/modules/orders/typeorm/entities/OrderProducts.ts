@@ -1,5 +1,6 @@
 import { Column, CreateDateColumn, Entity, JoinColumn, ManyToOne, PrimaryGeneratedColumn, UpdateDateColumn } from "typeorm";
 import Order from "./Order";
+import Product from "@modules/products/typeorm/entities/Product";
 
  @Entity('order_products')
  class OrdersProducts {
@@ -10,6 +11,10 @@ import Order from "./Order";
   @ManyToOne(() => Order, order => order.order_products)
   @JoinColumn({'name': 'order_id'})
   order: Order
+
+  @ManyToOne(() => Product, product => product.order_products)
+  @JoinColumn({'name': 'product_id'})
+  product: Product
 
   @Column('decimal')
   price: number;
