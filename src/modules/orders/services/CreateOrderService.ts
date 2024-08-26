@@ -1,6 +1,5 @@
 import { getCustomRepository } from "typeorm";
 import AppError from "@shared/errors/AppError";
-
 import CustomersRepository from "@modules/customers/typeorm/repositories/CustomersRepository";
 import ProductRepository from "@modules/products/typeorm/repositories/ProductsRepository";
 import OrdersRepository from "@modules/orders/typeorm/repositories/OrdersRepository";
@@ -17,7 +16,7 @@ interface IRequest {
 
 
 class CreateOrderService {
-  public async execute({ customer_id, products}:IRequest) Promise<Order> {
+  public async execute({ customer_id, products}:IRequest): Promise<Order> {
     const ordersRepository = getCustomRepository(OrdersRepository);
     const customerRepository = getCustomRepository(CustomersRepository);
     const productsRepository = getCustomRepository(ProductRepository);
