@@ -53,6 +53,12 @@ class CreateOrderService {
       );
     }
 
+    const serializedProducts = products.map(product => ({
+      product_id: product.id,
+      quantity: product.quantity,
+      price: existsProducts.filter(p => p.id === product.id)[0].price
+    }));
+
   }
 }
 
