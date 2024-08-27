@@ -1,7 +1,7 @@
-import { getCustomRepository } from "typeorm";
-import AppError from "@shared/errors/AppError";
 import CustomersRepository from "@modules/customers/typeorm/repositories/CustomersRepository";
 import ProductRepository from "@modules/products/typeorm/repositories/ProductsRepository";
+import AppError from "@shared/errors/AppError";
+import { getCustomRepository } from "typeorm";
 import Order from '@modules/orders/typeorm/entities/Order';
 import OrdersRepository from "@modules/orders/typeorm/repositories/OrdersRepository";
 
@@ -67,8 +67,16 @@ class CreateOrderService {
       products: serializedProducts,
     });
 
+    const { order_products } = order;
 
+    const updatedProductQuantity = order_products.map(product => ({
+      id: product.product_id,
+      quantity:  existsProducts.filter(p => p.id === product.id)[0].quantity - product.quantity
+    }));
 
+    await productsRepository.save(updatedProductQuantity);
+
+    return order;
   }
 }
 
