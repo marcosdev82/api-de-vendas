@@ -15,22 +15,33 @@ interface IRequest {
 }
 
 class CreateOrderService {
-  public async execute({ customer_id, products}:IRequest): Promise<Order> {
+  public async execute({ customer_id, products }: IRequest): Promise<Order> {
     const ordersRepository = getCustomRepository(OrdersRepository);
     const customerRepository = getCustomRepository(CustomersRepository);
     const productsRepository = getCustomRepository(ProductRepository);
 
-    const customerExists = await customerRepository.find(customer_id);
+    const existsCustomer = await customerRepository.find(customer_id);
 
-    if (customerExists) {
+    if (existsCustomer) {
       throw new AppError('Could not find any customer with the given id.');
     }
 
-    const productExists = await productsRepository.findAllByIds(products);
+    const existsProducts = await productsRepository.findAllByIds(products);
 
-    if (productExists) {
-      throw new AppError('Could not find any customer with the given id.');
+    if (!existsProducts.length) {
+      throw new AppError('Could not find any products with the given ids.');
     }
+
+    const existsProductsIds = existsProducts.map((product) => product.id);
+
+    const checkInexistentProducts = products.filter(
+      product => !existsProductsIds.includes(product.id)
+    );
+
+    if (!checkInexistentProducts.length) {
+      throw new AppError(`Could not find any product ${checkInexistentProducts[0].id}.`);
+    }
+
   }
 }
 
