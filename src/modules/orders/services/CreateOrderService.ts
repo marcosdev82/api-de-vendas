@@ -14,17 +14,21 @@ interface IRequest {
   products: IProduct[];
 }
 
-
 class CreateOrderService {
   public async execute({ customer_id, products}:IRequest): Promise<Order> {
     const ordersRepository = getCustomRepository(OrdersRepository);
     const customerRepository = getCustomRepository(CustomersRepository);
     const productsRepository = getCustomRepository(ProductRepository);
 
-
-    const customerExists = await productsRepository.findById(customer_id);
+    const customerExists = await customerRepository.find(customer_id);
 
     if (customerExists) {
+      throw new AppError('Could not find any customer with the given id.');
+    }
+
+    const productExists = await productsRepository.findAllByIds(products);
+
+    if (productExists) {
       throw new AppError('Could not find any customer with the given id.');
     }
   }
