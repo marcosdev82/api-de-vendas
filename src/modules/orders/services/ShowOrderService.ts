@@ -9,13 +9,13 @@ interface IProduct {
 }
 
 interface IRequest {
-  customer_id: string;
+  id: string;
 }
 
 class ShowOrderService {
-  public async execute({ customer_id }: IRequest): Promise<Order> {
+  public async execute({ id }: IRequest): Promise<Order> {
     const orderRepository = getCustomRepository(OrdersRepository);
-    const order = await orderRepository.findById(customer_id);
+    const order = await orderRepository.findById(id);
 
     if (!order) {
       throw new AppError('Order not found.');
